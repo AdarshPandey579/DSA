@@ -1,3 +1,8 @@
+//Minimum Size Subarray Sum
+// Input: target = 7, nums = [2,3,1,2,4,3]
+// Output: 2
+// Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+
 #include<iostream>
 #include<vector>
 #include<algorithm>
@@ -8,7 +13,7 @@ int main(){
     vector<int> nums={2,3,1,2,4,3};
     int target=7;
     int minlen=INT_MAX, low=0, high=0, sum=0, n=nums.size();
-    while(high<n){
+    for(high=0; high<n; high++){
         sum+=nums[high];
         while(sum>=target){
             int len=high-low+1;
@@ -16,7 +21,6 @@ int main(){
             sum=sum-nums[low];
             low++;
         }
-        high++;
     }
     if(minlen==INT_MAX){
         cout<< 0;
