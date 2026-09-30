@@ -21,12 +21,12 @@ int main(){
                 ans.push_back({nums[i],nums[x],nums[y]});
                 x++;
                 y--;
-                while(x<n && nums[x]==nums[x-1]){
+                while(x<y && nums[x]==nums[x-1]){
                     x++;
                 }
-                while(y>=0 && nums[y]==nums[y+1]){
-                    y--;
-                }
+                // while(x<y && nums[y]==nums[y+1]){
+                //     y--;
+                // }
             }
         }
     }
