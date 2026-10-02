@@ -13,12 +13,11 @@ int main(){
         m[s[high]]++;
         if(m.size()==k){
             result=max(result,high-low+1);
-        }else if(m.size()>k){
-            while(m.size()!=k){
-                m[s[low]]--;
-                if(m[s[low]]==0) m.erase(s[low]);
-                low++;
-            }
+        }
+        while(m.size()>k){
+            m[s[low]]--;
+            if(m[s[low]]==0) m.erase(s[low]);
+            low++;
         }
     }
     cout << result;
