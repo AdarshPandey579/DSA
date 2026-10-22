@@ -11,7 +11,7 @@ int main(){
     int n=t.size();
     for(int i=n-1;i>=0;i--){
         while(!st.empty() && t[st.top()]<=t[i]) st.pop();
-        if(!st.empty()) ans[i]=i-st.top();
+        if(!st.empty()) ans[i]=st.top()-i;
         else ans[i]=0;
         st.push(i);
     }
