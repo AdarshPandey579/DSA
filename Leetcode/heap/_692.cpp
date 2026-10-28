@@ -1,7 +1,6 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include<functional>
 #include<unordered_map>
 using namespace std;
 
