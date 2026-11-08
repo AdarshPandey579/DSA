@@ -11,17 +11,16 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-pair<TreeNode*, int> lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q){
-    if(root == NULL) return {root, 0};
-    int head = 0;
-    if(root->val == p->val) head++;
-    if(root->val == q->val) head++;
-    pair<TreeNode*, int> p1 = lowestCommonAncestor(root->left, p, q);
-    pair<TreeNode*, int> p2 = lowestCommonAncestor(root->right, p, q);
-    if(p1.second==2) return p1;
-    if(p2.second==2) return p2;
-    if(p1.second+p2.second==2) return {root,2};
-    return {root, p1.second+p2.second+head};
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q){
+    if(root==NULL) return NULL;
+        if(root->val==p->val || root->val==q->val) return root;
+
+        TreeNode* Left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* Right = lowestCommonAncestor(root->right, p, q);
+
+        if(Left && Right) return root;
+        else if(Left != NULL) return Left;
+        else return Right;
 }
 
 int main(){
@@ -46,8 +45,8 @@ int main(){
     TreeNode* q = new TreeNode(3);
     // TreeNode* q = new TreeNode(5);
 
-    pair<TreeNode*, int> result = lowestCommonAncestor(root, p, q);
-    cout << result.first->val << endl;
+    TreeNode* result = lowestCommonAncestor(root, p, q);
+    cout << result->val << endl;
 
     return 0;
 }
