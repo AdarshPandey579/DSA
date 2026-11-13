@@ -18,7 +18,7 @@ int diameterOfBinaryTree(TreeNode* root){
     int Left = diameterOfBinaryTree(root->left);
     int Right = diameterOfBinaryTree(root->right);
     ans=max(ans, Left+Right);
-    return max(Left, Right)+1;
+    return max(Left, Right) + 1;
 }
 
 int main(){
