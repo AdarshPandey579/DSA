@@ -1,7 +1,9 @@
 #include<iostream>
 #include<vector>
+#include<queue>
 using namespace std;
 
+// DFS
 bool DFS(int v, vector<vector<int>>& graph, int color, vector<int>& colored){
     colored[v] = color;
     for(int neighbour : graph[v]){
@@ -9,6 +11,25 @@ bool DFS(int v, vector<vector<int>>& graph, int color, vector<int>& colored){
             if(!DFS(neighbour, graph, !color, colored)) return false;
         }
         else if(colored[neighbour] == color) return false;
+    }
+    return true;
+}
+
+// BFS
+bool BFS(int v, vector<vector<int>>& graph, vector<int>& colored){
+    colored[v] = 0;
+    queue<int> q;
+    q.push(v);
+    while(!q.empty()){
+        int node = q.front();
+        q.pop();
+        for(int neighbour : graph[node]){
+            if(colored[neighbour]==-1){
+                colored[neighbour] = 1 - colored[node];
+                q.push(neighbour);
+            }
+            else if(colored[neighbour] == colored[node]) return false;
+        }
     }
     return true;
 }
